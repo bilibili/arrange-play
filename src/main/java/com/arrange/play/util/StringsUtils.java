@@ -17,22 +17,4 @@ public class StringsUtils {
         return !isEmptyOrNull(str);
     }
 
-    public static String idCardToUpCase(String idCard) {
-        idCard = StringUtils.trimToEmpty(idCard);
-        if (StringUtils.isBlank(idCard)) {
-            return idCard;
-        } else {
-            char[] chars = idCard.toCharArray();
-            int lastIndex = chars.length - 1;
-            char lastChar = chars[lastIndex];
-            if (lastChar == 'x') {
-                chars[lastIndex] = (char)(chars[lastIndex] - 32);
-                return String.valueOf(chars);
-            } else {
-                return idCard;
-            }
-        }
-    }
-
-
 }
