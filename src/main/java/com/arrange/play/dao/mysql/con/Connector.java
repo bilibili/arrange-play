@@ -114,17 +114,4 @@ public class Connector {
     return sign;
   }
 
-
-
-  public static void main(String[] args) {
-    MysqlInfo mysqlInfo = new MysqlInfo();
-    mysqlInfo.setDriverName("com.mysql.cj.jdbc.Driver");
-    mysqlInfo.setUrl("jdbc:mysql://172.23.34.46:4000/bilibili_material?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai");
-    mysqlInfo.setUserName("bilibili_material");
-    mysqlInfo.setPassword("pVGy1f8TRDkB0OnjvhNWCcQ3KxrIaw7E");
-
-    Connection conn = Connector.getConn(mysqlInfo);
-    Connector.selectRecord(conn, "select * from archive_material where type = 64");
-  }
-
 }
