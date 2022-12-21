@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.arrange.play.dao.mysql.mapper.RequestFlowMapper">
+
+  <resultMap id="BaseResultMap" type="com.arrange.play.model.entity.RequestFlow">
+    <result column="id" property="id"/>
+    <result column="flow_content" property="flowContent"
+      typeHandler="com.arrange.play.dao.mysql.type.StepNodeListTypeHandler"/>
+    <result column="replace_value" property="replaceValue"
+      typeHandler="com.arrange.play.dao.mysql.type.ReplaceValueMapTypeHandler"/>
+    <result column="flow_desc" property="flowDesc"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, flow_content, replace_value, flow_desc
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from request_flow
+    where id = #{id}
+  </select>
+
+  <insert id="insert" parameterType="com.arrange.play.model.entity.RequestFlow">
+    insert into request_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="flowContent != null">
+        flow_content,
+      </if>
+      <if test="replaceValue != null">
+        replace_value,
+      </if>
+      <if test="flowDesc != null and flowDesc != ''">
+        flow_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="flowContent != null">
+        #{flowContent, typeHandler=com.arrange.play.dao.mysql.type.StepNodeListTypeHandler},
+      </if>
+      <if test="replaceValue != null">
+        #{replaceValue, typeHandler=com.arrange.play.dao.mysql.type.ReplaceValueMapTypeHandler},
+      </if>
+      <if test="flowDesc != null and flowDesc != ''">
+        #{flowDesc},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
