@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrange.play.dao.mysql.mapper.HttpApiInfoMapper">
+  <resultMap id="BaseResultMap" type="com.arrange.play.model.entity.HttpApiInfo">
+      <result column="id" property="id" />
+      <result column="busi_id" property="busiId" />
+      <result column="api_name" property="apiName" />
+      <result column="api_domain" property="apiDomain" />
+      <result column="api_uri" property="apiUri" />
+      <result column="request_method" property="requestMethod" />
+      <result column="request_data_type" property="requestDataType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, busi_id, api_name, api_domain, api_uri, request_method, request_data_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from http_api_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from http_api_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.arrange.play.model.entity.HttpApiInfo">
+    insert into http_api_info (id, busi_id, api_name,
+      api_domain, api_uri, request_method,
+      request_data_type)
+    values (#{id,jdbcType=INTEGER}, #{busiId,jdbcType=INTEGER}, #{apiName,jdbcType=VARCHAR},
+      #{apiDomain,jdbcType=VARCHAR}, #{apiUri,jdbcType=VARCHAR}, #{requestMethod,jdbcType=VARCHAR},
+      #{requestDataType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arrange.play.model.entity.HttpApiInfo">
+    insert into http_api_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="busiId != null">
+        busi_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="apiDomain != null">
+        api_domain,
+      </if>
+      <if test="apiUri != null">
+        api_uri,
+      </if>
+      <if test="requestMethod != null">
+        request_method,
+      </if>
+      <if test="requestDataType != null">
+        request_data_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="busiId != null">
+        #{busiId,jdbcType=INTEGER},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDomain != null">
+        #{apiDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUri != null">
+        #{apiUri,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDataType != null">
+        #{requestDataType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arrange.play.model.entity.HttpApiInfo">
+    update http_api_info
+    <set>
+      <if test="busiId != null">
+        busi_id = #{busiId,jdbcType=INTEGER},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDomain != null">
+        api_domain = #{apiDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUri != null">
+        api_uri = #{apiUri,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        request_method = #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDataType != null">
+        request_data_type = #{requestDataType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arrange.play.model.entity.HttpApiInfo">
+    update http_api_info
+    set busi_id = #{busiId,jdbcType=INTEGER},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      api_domain = #{apiDomain,jdbcType=VARCHAR},
+      api_uri = #{apiUri,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=VARCHAR},
+      request_data_type = #{requestDataType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

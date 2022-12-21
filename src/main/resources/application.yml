@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  h2:
+    console:
+      path: /h2-console #进入h2 web操作界面的路径
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:h2:mem:test
+    username: root
+    password: test
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.arrange.play.model.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 在console打印sql语句

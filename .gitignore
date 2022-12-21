@@ -1,0 +1,9 @@
+.idea/
+.mvn/
+target/
+mvnw*
+*.iml
+.classpath
+.project
+.settings/
+arrange-play-logs/

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrange.play.dao.mysql.mapper.HttpRequestModuleMapper">
+  <resultMap id="BaseResultMap" type="com.arrange.play.model.entity.HttpRequestModule">
+    <result column="id" property="id"/>
+    <result column="api_id" property="apiId"/>
+    <result column="module_name" property="moduleName"/>
+    <result column="header" property="header"/>
+    <result column="module_content" property="moduleContent"/>
+    <result column="param_keys" property="paramKeys"
+      typeHandler="com.arrange.play.dao.mysql.type.StringListTypeHandler"/>
+    <result column="module_desc" property="moduleDesc"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, api_id, module_name, header, module_content, param_keys, module_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from http_request_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from http_request_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.arrange.play.model.entity.HttpRequestModule">
+    insert into http_request_module (id, api_id, module_name,
+      header, module_content, module_desc)
+    values (#{id,jdbcType=INTEGER}, #{apiId,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR},
+       #{header,jdbcType=LONGVARCHAR}, #{moduleContent,jdbcType=LONGVARCHAR}, #{moduleDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arrange.play.model.entity.HttpRequestModule">
+    insert into http_request_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="moduleDesc != null">
+        module_desc,
+      </if>
+      <if test="moduleContent != null">
+        module_content,
+      </if>
+      <if test="moduleContent != null">
+        header,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleDesc != null">
+        #{moduleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleContent != null">
+        #{moduleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="header != null">
+        #{header,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="com.arrange.play.model.entity.HttpRequestModule">
+    update http_request_module
+    <set>
+      <if test="apiId != null">
+        api_id = #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleDesc != null">
+        module_desc = #{moduleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleContent != null">
+        module_content = #{moduleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="header != null">
+        header = #{header,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs"
+    parameterType="com.arrange.play.model.entity.HttpRequestModule">
+    update http_request_module
+    set api_id = #{apiId,jdbcType=INTEGER},
+      module_name = #{moduleName,jdbcType=VARCHAR},
+      module_desc = #{moduleDesc,jdbcType=VARCHAR},
+      module_content = #{moduleContent,jdbcType=LONGVARCHAR}
+      header = #{header,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arrange.play.model.entity.HttpRequestModule">
+    update http_request_module
+    set api_id = #{apiId,jdbcType=INTEGER},
+      module_name = #{moduleName,jdbcType=VARCHAR},
+      module_desc = #{moduleDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
